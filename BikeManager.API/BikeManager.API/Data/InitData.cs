@@ -57,26 +57,42 @@ namespace BikeManager.API.Data
                 //add test bikes
                 var idAvail = context.BikeStatuses
                     .FirstOrDefault(x => x.StatusName == "Available")?.StatusId;
-                var idCategory = context.BikeCategories
-                    .FirstOrDefault(x => x.CategoryName == "Highway")?.CategoryId;
+                var idRent = context.BikeStatuses
+                    .FirstOrDefault(x => x.StatusName == "Rented")?.StatusId;
                 
-                if(idCategory == default || idAvail == default){ return; }
+                var idHighwayCategory = context.BikeCategories
+                    .FirstOrDefault(x => x.CategoryName == "Highway")?.CategoryId;
+                var idMountainCategory = context.BikeCategories
+                    .FirstOrDefault(x => x.CategoryName == "Mountain")?.CategoryId;
+
+                if (idHighwayCategory == default || idMountainCategory == default ||
+                    idAvail == default || idRent == default)
+                {
+                    return;
+                }
 
                 context.Bikes.AddRange(new List<Bike>()
                 {
                     new Bike()
                     {
                         BikeName = "Test bike 1",
-                        CategoryId = (int)idCategory,
+                        CategoryId = (int)idHighwayCategory,
                         StatusId = (int)idAvail,
                         Price = 500
                     },
                     new Bike()
                     {
                         BikeName = "Test bike 2",
-                        CategoryId = (int)idCategory,
+                        CategoryId = (int)idHighwayCategory,
                         StatusId = (int)idAvail,
                         Price = 550
+                    },
+                    new Bike()
+                    {
+                        BikeName = "Test bike 3",
+                        CategoryId = (int)idMountainCategory,
+                        StatusId = (int)idRent,
+                        Price = 680
                     }
                 });
                 
