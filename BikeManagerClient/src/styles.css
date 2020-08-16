@@ -1,0 +1,78 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 400;
+    background-color: #F5F5F5;
+}
+
+#app-title {
+    font: 2em sans-serif;
+}
+
+#rent-title-text {
+    font-size: 150%;
+}
+
+#avail-title-text {
+    font-size: 150%;
+}
+
+#create-title-text {
+    font-size: 150%;
+}
+
+.btn-create-bike {
+    color: #fff;
+    background-color: #23BA99;
+    border-color: #23BA99;
+  }
+  
+.btn-create-bike:hover {
+    color: #fff;
+    background-color: #177C66;
+    border-color: #177C66;
+}
+
+.btn-rent-bike {
+    color: #fff;
+    background-color: #3750C7;
+    border-color: #3750C7;
+    width: 7rem;
+  }
+  
+.btn-rent-bike:hover {
+    color: #fff;
+    background-color: #243584;
+    border-color: #243584;
+}
+
+.btn-delete-bike {
+    color: #fff;
+    background-color: #F2323F;
+    border-color: #F2323F;
+    width: 7rem;
+  }
+  
+.btn-delete-bike:hover {
+    color: #fff;
+    background-color: #A1212A;
+    border-color: #A1212A;
+}
+
+.create-bike-container, .avail-bike-container, .rent-bike-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-card {
+    background-color: #E9EAEE;
+}
+
+.bike-description {
+    font: 1.3em sans-serif;
+    align-self: center;
+}

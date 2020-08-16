@@ -1,0 +1,5 @@
+<app-create-bike></app-create-bike>
+
+<app-bike-rent-list *ngIf='bikeRentList?.length > 0' [bikeList]="bikeRentList"></app-bike-rent-list>
+
+<app-bike-avail-list *ngIf='bikeAvailList?.length > 0' [bikeList]="bikeAvailList"></app-bike-avail-list>

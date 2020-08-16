@@ -1,0 +1,17 @@
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-lg-8 bike-description d-flex justify-content-center justify-content-lg-start">
+                <span>{{bike.bikeName}} / {{bike.categoryName}} / ${{bike.price}}</span>
+            </div>
+            
+            <div class="col-6 col-lg-2 mt-3 mt-lg-0">
+                <button class="btn btn-rent-bike w-100" (click)='onRent()'>Rent</button>
+            </div>
+
+            <div class="col-6 col-lg-2 mt-3 mt-lg-0">
+                <button class="btn btn-delete-bike w-100" (click)='onDelete()'>Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+
+            <div class="row mb-3 mt-5">
+                <div class="col-12 d-flex justify-content-center justify-content-lg-start">
+                    <p id='app-title'>
+                        Awesome Bike Rental
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-auto pr-0">
+                    <img src="../../../assets/smile_with_money.png" width="25px" height="20px" style="margin-top: 5px;"/>
+                </div> 
+
+                <div class="col-auto pl-0">
+                    <h3 id="create-title-text">Create new rent</h3> 
+                </div>
+            </div>
+
+            <!-- Bike create card -->
+            <div class="row">
+                <div class="col">
+                    <div class="card create-card">
+                        <div class="card-body">
+
+                            <form novalidate [formGroup]='bikeForm' (ngSubmit)="onSubmit()">
+                                <div class="row">
+                                    <div class="col-12 col-lg-4">
+                                        <label>Bike name</label>
+                                        <input type="text" class="form-control" formControlName="bikeName" placeholder="Bike name">
+                                    </div>
+
+                                    <div class="col-12 col-lg-4">
+                                        <label>Bike type</label>
+                                        <select class="form-control" formControlName="categoryName">
+                                            <option value="" disabled>Choose category</option>
+                                            <option *ngFor="let bike of bikeCategory" [value]="bike">{{bike}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12 col-lg-2">
+                                        <label>Rent price</label>
+                                        <input type="number" class="form-control" formControlName="price" placeholder="Price">
+                                    </div>
+
+                                    <div class="col-12 col-lg-2 d-flex justify-content-center mt-3 mt-sm-3 mt-lg-auto">
+                                        <button class="btn btn-create-bike w-100" [disabled]="!bikeForm.valid">Submit rent</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End bike create card -->
+
+        </div>
+    </div>
+</div>

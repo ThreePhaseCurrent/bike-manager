@@ -1,0 +1,25 @@
+<div class="container-fluid mt-2 mt-sm-2 mt-lg-3">
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+
+            <div class="row">
+                <div class="col-auto pr-0">
+                    <img src="../../../assets/bicycle.png" width="25px" height="17px" style="margin-top: 5px;"/>
+                </div>
+
+                <div class="col-auto pl-0">
+                    <h3 id="avail-title-text" class="ml-1">Available bicycles ({{bikeList?.length}})</h3> 
+                </div>
+            </div>
+
+            <div *ngFor='let bike of bikeList' class="row">
+                <div class="col">
+                    <app-bike-avail-detail [bike]="bike" (deleteEvent)="onBikeDelete()"></app-bike-avail-detail>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

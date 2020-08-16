@@ -1,0 +1,23 @@
+<div class="container-fluid mt-4 mt-lg-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+
+            <div class="row">
+                <div class="col-auto pr-0">
+                    <img src="../../../assets/smile_with_stars.png" width="18px" height="18px" style="margin-top: 5px;"/>
+                </div>
+
+                <div class="col-auto pl-0">
+                    <h3 class="ml-1" id='rent-title-text'>Your rent (Total: ${{caclPrice()}})</h3> 
+                </div>
+            </div>
+
+            <div class="row" *ngFor='let bike of bikeList'>
+                <div class="col">
+                    <app-bike-rent-detail [bike]='bike'></app-bike-rent-detail>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
