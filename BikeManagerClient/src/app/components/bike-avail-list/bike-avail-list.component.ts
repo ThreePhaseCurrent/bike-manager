@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BikeService } from 'src/app/services/bike.service';
 import { Bike } from 'src/app/models/bike';
 
 @Component({
@@ -15,9 +14,5 @@ export class BikeAvailListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  onBikeDelete() {
-    
   }
 }

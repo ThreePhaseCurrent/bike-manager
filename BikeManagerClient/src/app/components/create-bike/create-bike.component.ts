@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Bike } from 'src/app/models/bike';
 import { BikeService } from 'src/app/services/bike.service';
+import { takeUntil } from 'rxjs/operators';
+import { DestroyService } from 'src/app/services/destroy.service';
 
 @Component({
   selector: 'app-create-bike',
@@ -17,11 +19,13 @@ export class CreateBikeComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private bikeService: BikeService
+    private bikeService: BikeService,
+    private destroy$: DestroyService
   ) { 
     this.bikeFormCreate();
   }
 
+  //create form
   bikeFormCreate(){
     this.bikeForm = this.fb.group({
       bikeName: ['', [Validators.required]],
@@ -33,13 +37,14 @@ export class CreateBikeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //added new bike to db
   onSubmit(){
     this.bike = this.bikeForm.value;
     this.bike.statusName = "Available";
 
-    console.log(this.bike);
-
-    this.bikeService.createBike(this.bike).subscribe(x => {
+    this.bikeService.createBike(this.bike)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(x => {
       this.bikeService.addedBike$.next(1);
     });
 

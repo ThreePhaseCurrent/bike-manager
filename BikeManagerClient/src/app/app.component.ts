@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Bike } from './models/bike';
 import { BikeService } from './services/bike.service';
-import { Observable } from 'rxjs';
+import { DestroyService } from './services/destroy.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,23 +12,19 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'BikeManagerClient';
 
+  //available bikes list
   bikeAvailList: Bike[];
-
+  //rented bikes list    
   bikeRentList: Bike[];
 
   constructor(
-    private bikeService: BikeService
+    private bikeService: BikeService,
+    private destroy$: DestroyService
   ) {}
 
   ngOnInit(){
-    this.bikeService.getAvailBike().subscribe(x => {
-      this.bikeAvailList = x;
-    });
-
-    this.bikeService.getRentBike().subscribe(x => {
-      this.bikeRentList = x;
-      console.log(x);
-    });
+    this.updateAvailBikes();
+    this.updateRentedBikes();
 
     //event deleted bike
     this.bikeService.deletedBike$.subscribe(x => {
@@ -64,16 +61,16 @@ export class AppComponent implements OnInit {
     });
   }
 
-  //update avail bikes after deleted
+  //update avail bikes
   updateAvailBikes(){
-    this.bikeService.getAvailBike().subscribe(x => {
+    this.bikeService.getAvailBike().pipe(takeUntil(this.destroy$)).subscribe(x => {
       this.bikeAvailList = x;
     });
   }
 
   //update rented bikes
   updateRentedBikes() {
-    this.bikeService.getRentBike().subscribe(x => {
+    this.bikeService.getRentBike().pipe(takeUntil(this.destroy$)).subscribe(x => {
       this.bikeRentList = x;
     });
   }

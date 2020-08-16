@@ -16,9 +16,12 @@ export class BikeRentListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //calc price all bikes
   caclPrice(): number{
     var summ = 0;
-    this.bikeList.forEach(x => {summ += x.price; console.log(x.price);});
+    this.bikeList.forEach(x => {
+      summ += x.price;
+    });
     
     return summ;
   }

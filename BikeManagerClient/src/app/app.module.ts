@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BikeService } from './services/bike.service';
 import { baseURL } from './shared/baseURL';
+import { DestroyService } from './services/destroy.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { baseURL } from './shared/baseURL';
     HttpClientModule,
     FormsModule
   ],
-  providers: [BikeService, {provide: 'baseUrl', useValue: baseURL}],
+  providers: [BikeService, DestroyService, {provide: 'baseUrl', useValue: baseURL}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

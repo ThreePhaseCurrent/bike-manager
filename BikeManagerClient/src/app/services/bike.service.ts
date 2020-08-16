@@ -14,7 +14,17 @@ export class BikeService {
     private http: HttpClient
   ) { }
 
-  createBike(bike: Bike): Observable<any>{
+  //event success deleted bike from db 
+  deletedBike$ = new BehaviorSubject<number>(0);
+  //event success added bike to db 
+  addedBike$ = new BehaviorSubject<number>(0);
+  //event success rented bike
+  rentedBike$ = new BehaviorSubject<number>(0);
+  //event success cancel renting bike
+  cancelRentBike$ = new BehaviorSubject<number>(0);
+
+  //create new bike
+  createBike(bike: Bike): Observable<any> {
     return this.http.post(`${baseURL}bikes`, {
       BikeName: bike.bikeName,
       CategoryName: bike.categoryName,
@@ -23,28 +33,28 @@ export class BikeService {
     });
   }
 
-  deletedBike$ = new BehaviorSubject<number>(0);
-  addedBike$ = new BehaviorSubject<number>(0);
-  rentedBike$ = new BehaviorSubject<number>(0);
-  cancelRentBike$ = new BehaviorSubject<number>(0);
-
-  getAvailBike(): Observable<Bike[]>{
+  //get available bikes from server
+  getAvailBike(): Observable<Bike[]> {
     return this.http.get<Bike[]>(`${baseURL}bikes/available`);
   }
 
+  //get rented bikes from server
   getRentBike(): Observable<Bike[]> {
     return this.http.get<Bike[]>(`${baseURL}bikes/rented`);
   }
 
+  //delete bike from server by id
   deleteBikeById(id: number): Observable<any> {
     return this.http.delete(`${baseURL}bikes/` + id);
   }
 
+  //rent bike by id
   rentBike(id: number): Observable<any> {
     return this.http.put(`${baseURL}bikes?id=` + id + `&toStatus=Rented`, {});
   }
 
-  cancelRentBike(id: number){
+  //cancel renting bike by id
+  cancelRentBike(id: number) {
     return this.http.put(`${baseURL}bikes?id=` + id + `&toStatus=Available`, {})
   }
 }
